@@ -25,23 +25,25 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
               "src/assets/global/css/bootstrap.css",
               "src/assets/global/css/bootstrap-extended.css",
               "src/assets/global/css/colors.css",
               "src/assets/global/css/components.css",
               "src/assets/global/css/palette-gradient.css",
               "src/assets/global/css/hospital.css",
-\              "src/assets/global/vendors/css/vendors.min.css",
+              "src/assets/global/vendors/css/vendors.min.css",
               "src/assets/global/fonts/feather/style.css",
               "src/assets/global/css/animate/animate.css",
-              "src/assets/global/css/style.css"
+              "src/assets/global/css/style.css",
+              "src/assets/icons/style.css",
+              "src/assets/fonts.css",
+              "src/styles.css"
             ],
             "scripts": [
               "src/assets/global/vendors/js/vendors.min.js",
               "src/assets/global/js/core/app.js",
-              "src/assets/global/js/core/app-menu.js",
-\            ]
+              "src/assets/global/js/core/app-menu.js"
+            ]
           },
           "configurations": {
             "production": {

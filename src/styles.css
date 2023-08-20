@@ -1,1 +1,48 @@
-/* You can add global styles to this file, and also import other style files */
+.c-yellow {
+  color: #ffc107 !important
+}
+
+.b-blue {
+  background: #F5F7FC;
+}
+
+.border-lead {
+  padding: 20px;
+  border: 2px solid #E5EAEE !important;
+  border-radius: 8px}
+
+.c-light-black {
+  font-family: c-light !important;
+  font-size: 16px;
+  color: #1A1E2E;
+}
+
+.c-bold-black {
+  font-family: c-light-bold;
+  font-size: 16px;
+  color: #1A1E2E;
+}
+
+.c-small-bold {
+  font-family: c-small-bold;
+  font-size: 14px;
+  color: #1A1E2E;
+  font-weight: 600;
+  line-height: 17px;
+  letter-spacing: 0em;
+}
+
+.c-small-light {
+  font-family: c-light !important;
+  font-size: 14px;
+  color: #1A1E2E;
+}
+
+.job-info-category {
+  color: #30a5bf;
+  background: rgba(25,103,210,.15);
+}
+
+.border-8 {
+  border-radius: 8px;
+}

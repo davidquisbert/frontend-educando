@@ -301,30 +301,93 @@ template {
   display: none !important; }
 
 h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
+.h1, .h2, .h3, .h4, .h5, .h6, .h1A, .h2B {
   margin-bottom: 0.5rem;
-  font-weight: 400;
-  line-height: 1.2;
-  color: #464855; }
+  color: #1A1E2E; }
 
 h1, .h1 {
-  font-size: 2rem; }
+  font-family: 'dh1A';
+  font-size: 36px;
+}
+
+.h1B {
+  font-family: 'dh1B';
+  font-size: 36px;
+
+}
 
 h2, .h2 {
-  font-size: 1.74rem; }
+  font-family: 'dh2A';
+  font-size: 24px;
+}
+
+.h2B {
+  font-family: 'dh2B';
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%;
+}
 
 h3, .h3 {
-  font-size: 1.51rem; }
+  font-family: 'dh3';
+  font-size: 18px;
+}
 
 h4, .h4 {
-  font-size: 1.32rem; }
+  font-family: 'h4';
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0em;
+}
 
 h5, .h5 {
-  font-size: 1.14rem; }
+  font-family: 'h5';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+  letter-spacing: 0em;
+}
 
 h6, .h6 {
-  font-size: 1rem; }
+  font-family: 'dh6';
+  font-size: 16px;
+}
 
+@media (max-width: 576px) {
+  h1, .h1 {
+    font-family: 'mh1A';
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 29px;
+    letter-spacing: 0em;
+  }
+
+  .h1B {
+    font-family: 'mh1B';
+    font-size: 26px;
+
+  }
+
+  h2, .h2 {
+    font-family: 'mh2A';
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0em;
+  }
+
+  .h2B {
+    font-family: 'mh2B';
+    font-size: 22px;
+  }
+
+  h3, .h3 {
+    font-family: 'mh3';
+    font-size: 18px;
+  }
+}
 .lead {
   font-size: 1.25rem;
   font-weight: 400; }
@@ -1671,17 +1734,18 @@ textarea.form-control {
 
 .btn {
   display: inline-block;
-  font-weight: 400;
+  font-weight: 500;
   color: #6b6f82;
   text-align: center;
   vertical-align: middle;
   user-select: none;
   background-color: transparent;
   border: 1px solid transparent;
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
+  padding: 1rem 1rem;
+  font-family: c-light;
+  font-size: 16px;
   line-height: 1.25;
-  border-radius: 0.25rem;
+  border-radius: 8px;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
   @media (prefers-reduced-motion: reduce) {
     .btn {
@@ -2944,7 +3008,7 @@ input[type="button"].btn-block {
 
 .navbar-brand {
   display: inline-block;
-  padding-top: 0.31875rem;
+  /*padding-top: 0.31875rem;*/
   padding-bottom: 0.31875rem;
   margin-right: 1rem;
   font-size: 1.25rem;

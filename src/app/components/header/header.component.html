@@ -3,8 +3,8 @@
     <div class="navbar-header">
       <ul class="nav navbar-nav flex-row">
         <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
-        <li class="nav-item"><a class="navbar-brand" href="index.html"><img class="brand-logo" alt="logo" src="/assets/images/logo.png">
-          <h3 class="brand-text">Educando</h3>
+        <li class="nav-item"><a class="navbar-brand" href="index.html"><img class="img-fluid" alt="logo" src="/assets/images/logo-oficial.png" width="192">
+          <h3 class="brand-text"></h3>
         </a></li>
         <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="la la-ellipsis-v"></i></a></li>
       </ul>
@@ -13,20 +13,38 @@
       <div class="collapse navbar-collapse" id="navbar-mobile">
         <ul class="nav navbar-nav mr-auto float-left">
           <li class="nav-item dropdown">
-            <a class="nav-link" routerLink="/eventos/0">Encontrar trabajo</a>
+            <a class="nav-link" routerLink="/trabajo">Encontrar trabajo</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link" routerLink="/eventos/0">Empresas</a>
+            <a class="nav-link" routerLink="/nosotros">Nosotros</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link" routerLink="/eventos/0">Nosotros</a>
+            <a class="nav-link" routerLink="/empresas">Empresas</a>
           </li>
 
         </ul>
         <ul class="nav navbar-nav float-right">
-          <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"><span class="mr-1 user-name text-bold-700">John Doe</span><span class="avatar avatar-online"><img src="/assets/images/avatar-s-25.png" alt="avatar"><i></i></span></a>
-            <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="#"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item" href="#"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="#"><i class="ft-message-square"></i> Chats</a>
-              <div class="dropdown-divider"></div><a class="dropdown-item" href="login-with-bg-image.html"><i class="ft-power"></i> Logout</a>
+          <li class="align-self-center mr-3" *ngIf="sesionCompany === null && sesionPostulant === null">
+            <button class="btn btn-outline-primary round px-2" routerLink="/empresa/login">Soy empresa</button>
+          </li>
+          <li class="align-self-center" *ngIf="sesionCompany === null && sesionPostulant === null">
+            <button class="btn btn-outline-primary round px-3" data-toggle="modal" data-target="#loginPostulant" routerLink="/empresas"><i class="la icon-person"></i> </button>
+          </li>
+          <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown" *ngIf="sesionPostulant !== null">
+            <span class="mr-1 user-name text-bold-700">{{ sesionPostulant.name + ' ' +sesionPostulant.lastName}}</span>
+            <span class="avatar avatar-online"><img src="/assets/images/avatar-s-25.png" alt="avatar"><i></i></span></a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item" href="#"><i class="ft-user"></i> Perfil</a>
+              <div class="dropdown-divider"></div><a class="dropdown-item" (click)="logOutPostulant()"><i class="ft-power"></i> Cerrar sesion </a>
+            </div>
+          </li>
+
+          <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown" *ngIf="sesionCompany !== null">
+            <span class="mr-1 user-name text-bold-700">{{ sesionCompany.name}}</span>
+            <span class="avatar avatar-online"><img src="/assets/images/avatar-s-25.png" alt="avatar"><i></i></span></a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item" href="#"><i class="ft-user"></i> Perfil</a>
+              <div class="dropdown-divider"></div><a class="dropdown-item" (click)="logOutCompany()"><i class="ft-power"></i> Cerrar sesion </a>
             </div>
           </li>
         </ul>
@@ -34,3 +52,147 @@
     </div>
   </div>
 </nav>
+
+
+<div class="modal animated pulse text-left" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel38" aria-hidden="true">
+  <div class="modal-dialog modal-lg " role="document">
+    <div class="modal-content px-3">
+      <div class="modal-header border-0">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h2 class="text-center h2B">Crea tu cuenta gratuita en</h2>
+        <h1 class="text-center">Educando</h1>
+        <div class="form-row mt-3">
+          <div class="col-md-6 col-6">
+
+          <div class="form-group">
+            <label class="c-small-bold">Nombre<span class="color-primary-c">*</span></label>
+            <input type="text" class="form-control" placeholder="Ingresa tu nombre" [(ngModel)]="name">
+          </div>
+          </div>
+
+          <div class="col-md-6 col-6">
+
+            <div class="form-group">
+            <label class="c-small-bold">Apellidos<span class="color-primary-c">*</span></label>
+            <input type="text" class="form-control" placeholder="Ingresa tu apellido" [(ngModel)]="lastName">
+          </div>
+          </div>
+
+        </div>
+        <div class="form-row">
+          <div class="col-md-6 col-6">
+            <div class="form-group">
+              <label class="c-small-bold">Correo electrónico<span class="color-primary-c">*</span></label>
+              <input type="number" class="form-control" placeholder="Ingresa el nombre de usuario" [(ngModel)]="email">
+            </div>
+          </div>
+          <div class="col-md-6 col-6">
+            <div class="form-group">
+              <label class="c-small-bold">Contraseña<span class="color-primary-c">*</span></label>
+              <input type="number" class="form-control" placeholder="Ingresa una contraseña" [(ngModel)]="password">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Fecha de nacimiento<span class="color-primary-c">*</span></label>
+          <input type="date" class="form-control" placeholder="Ingresa tu fecha de nacimiento" [(ngModel)]="date">
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Dirección<span class="color-primary-c">*</span></label>
+          <input type="text" class="form-control" placeholder="Ingresa tu dirección" [(ngModel)]="address">
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Ciudad<span class="color-primary-c">*</span></label>
+          <div class="input-group">
+            <select class="form-control custom-select" [(ngModel)]="city">
+              <option value="" disabled selected>Selecciona una ciudad</option>
+              <option value="Santa Cruz">Santa Cruz</option>
+              <option value="La Paz">La Paz</option>
+              <option value="Cochabamba">Cochabamba</option>
+              <option value="Oruro">Oruro</option>
+              <option value="Potosi">Potosi</option>
+              <option value="Chuquisaca">Chuquisaca</option>
+              <option value="Tarija">Tarija</option>
+              <option value="Beni">Beni</option>
+              <option value="Pando">Pando</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Género<span class="color-primary-c">*</span></label>
+          <div class="input-group">
+            <select class="form-control custom-select" [(ngModel)]="gender">
+              <option value="" disabled selected>Selecciona una opción</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Femenino">Femenino</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Estado civil<span class="color-primary-c">*</span></label>
+          <div class="input-group">
+            <select class="form-control custom-select" [(ngModel)]="civilStatus">
+              <option value="" disabled selected>Selecciona una opción</option>
+
+              <option value="Masculino">Soltero</option>
+              <option value="Femenino">Casado</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Numero de celular<span class="color-primary-c">*</span></label>
+          <input type="text" class="form-control" placeholder="Ingresa tu numero de celular" [(ngModel)]="numberPhone">
+          <label class="c-small-light pt-75">Usaremos este número para que las empresas se comuniquen contigo.</label>
+        </div>
+        <div class="form-group mb-1">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="1" name="tratamiento" [(ngModel)]="student">
+            <label class="custom-control-label description-form c-small-light" for="1">Estudiante </label>
+          </div>
+        </div>
+        <br>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-block btn-primary" data-dismiss="modal" [disabled]="!validateForm()" >Enviar codigo de verificación</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal animated pulse text-left" id="loginPostulant" tabindex="-1" role="dialog" aria-labelledby="myModalLabel38" aria-hidden="true">
+  <div class="modal-dialog modal-lg " role="document">
+    <div class="modal-content px-3">
+      <div class="modal-header border-0">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h2 class="text-center h2B">Inicia sesión en</h2>
+        <h1 class="text-center">Educando</h1>
+        <div class="form-group">
+          <label class="c-small-bold">Usuario</label>
+          <input type="email" class="form-control" placeholder="Usuario" [(ngModel)]="emailPostulant">
+        </div>
+        <div class="form-group mb-1">
+          <label class="c-small-bold">Contraseña</label>
+          <input type="password" class="form-control" placeholder="Contraseña" [(ngModel)]="passwordPostulant">
+        </div>
+        <br>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-block btn-primary" data-dismiss="modal" [disabled]="!validateFormLogin()" (click)="postLoginPostulant()">Iniciar sesión</button>
+        </div>
+        <div class="text-center">
+          <label class="c-small-bold mr-2">¿No tienes una cuenta?</label>
+          <button class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#login">Registrate</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

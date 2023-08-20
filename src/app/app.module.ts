@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxEditorModule } from 'ngx-editor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -25,6 +28,11 @@ import { IndexHomeCompanyComponent } from './pages/company/home/index/index-home
 import { IndexJobCompanyComponent } from './pages/company/job/index/index-job-company.component';
 import { DetailJobCompanyComponent } from './pages/company/job/detail/detail-job-company.component';
 import { IndesPostulantCompanyComponent } from './pages/company/postunt/indes/indes-postulant-company.component';
+import { DetailCompanyComponent } from './pages/company/detail-company/detail-company.component';
+import { IndexRegisterCompanyComponent } from './pages/company/register/index/index-register-company.component';
+import { HeaderCompanyComponent } from './components/header-company/header-company.component';
+import { PublishJobCompanyComponent } from './pages/company/job/publish/publish-job-company.component';
+import { HeaderAdministratorComponent } from './components/header-administrator/header-administrator.component';
 
 
 @NgModule({
@@ -48,10 +56,18 @@ import { IndesPostulantCompanyComponent } from './pages/company/postunt/indes/in
     IndexJobCompanyComponent,
     DetailJobCompanyComponent,
     IndesPostulantCompanyComponent,
+    DetailCompanyComponent,
+    IndexRegisterCompanyComponent,
+    HeaderCompanyComponent,
+    PublishJobCompanyComponent,
+    HeaderAdministratorComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    NgxEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

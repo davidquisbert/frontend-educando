@@ -1,0 +1,83 @@
+<app-header-company></app-header-company>
+<div class="app-content content">
+  <section class="mt-5">
+    <div class="container">
+      <div class="d-flex justify-content-between flex-row">
+        <a class="c-primaryB" style="opacity: 0">Regístrate <i class="la icon-arrow_forward"></i></a>
+        <h2 class="text-center">Crear una nueva oferta laboral</h2>
+        <a class="c-primaryB" style="opacity: 0">Regístrate</a><!-- Solo relleno-->
+      </div>
+    </div>
+  </section>
+
+
+  <section class="row flexbox-container ">
+    <div class="col-12 d-flex align-items-center justify-content-center ">
+      <div class="col-lg-5 col-md-8 col-12 p-0 ">
+        <div class="card box-shadow-0 py-3 pb-5 m-0" style="background: none">
+          <div class="card-content">
+            <div class="form-group">
+              <label class="c-small-bold">Titulo<span class="color-primary-c">*</span></label>
+              <input type="text" class="form-control" placeholder="Ingresa el titulo del puesto de trabajo" [(ngModel)]="title">
+            </div>
+            <div class="form-group">
+              <label class="c-small-bold">Descripcion<span class="color-primary-c">*</span></label>
+              <div class="NgxEditor__Wrapper">
+                <ngx-editor-menu  [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+                <ngx-editor  [editor]="editor" [ngModel]="html" [disabled]="false" [placeholder]="'Type here...'" [(ngModel)]="description"></ngx-editor>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="c-small-bold">Ciudad<span class="color-primary-c">*</span></label>
+              <div class="input-group">
+                <select class="form-control custom-select" [(ngModel)]="city">
+                  <option value="" disabled selected>Selecciona una ciudad</option>
+                  <option value="Santa Cruz">Santa Cruz</option>
+                  <option value="La Paz">La Paz</option>
+                  <option value="Cochabamba">Cochabamba</option>
+                  <option value="Oruro">Oruro</option>
+                  <option value="Potosi">Potosi</option>
+                  <option value="Chuquisaca">Chuquisaca</option>
+                  <option value="Tarija">Tarija</option>
+                  <option value="Beni">Beni</option>
+                  <option value="Pando">Pando</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="c-small-bold">Tipo de trabajo<span class="color-primary-c">*</span></label>
+              <div class="input-group">
+                <select class="form-control custom-select" [(ngModel)]="typeJob">
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <ng-container *ngFor="let item of listTypeJob">
+                    <option [value]="item.id">{{ item.name }}</option>
+                  </ng-container>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="c-small-bold">Area de estudio para el puesto de trabajo<span class="color-primary-c">*</span></label>
+              <div class="input-group">
+                <select class="form-control custom-select" [(ngModel)]="aresStudy" >
+                  <option value="" disabled selected>Selecciona una ciudad</option>
+                  <ng-container *ngFor="let item of areas">
+                    <option [value]="item.id">{{ item.name }}</option>
+                  </ng-container>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12 pl-0 text-center">
+                <button class="btn btn-primary px-4 mt-2" [disabled]="!validateForm()" (click)="postOfferJob()">Enviar oferta laboral</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>

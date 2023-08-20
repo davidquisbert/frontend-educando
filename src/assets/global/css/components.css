@@ -4,7 +4,7 @@ html {
   width: 100%; }
   html body {
     height: 100%;
-    background-color: #f4f5fa;
+    background-color: #ffffff;
     direction: ltr; }
     html body.fixed-navbar {
       padding-top: 5rem; }
@@ -65,6 +65,8 @@ html {
           color: #464855; }
     html body .la {
       font-size: 1.2rem; }
+    html body .lam {
+      font-size: 2rem; }
     html body[data-col="1-column"]:not(.vertical-content-menu) .content,
     html body[data-col="1-column"]:not(.vertical-content-menu) .footer {
       margin-left: 0px !important; }

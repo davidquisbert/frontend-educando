@@ -1,1 +1,33 @@
-<p>index-login-company works!</p>
+<div class="" style="">
+  <div class="row" style="max-width: 100%">
+    <div class="col-lg-6 col-12 d-lg-block d-none">
+      <img src="/assets/images/back12.jpg">
+    </div>
+    <div class="col-lg-6 col-12 align-self-center">
+      <div class="d-flex justify-content-between flex-row">
+        <a class="c-primaryB" style="opacity: 0">Regístrate <i class="la icon-arrow_forward"></i></a>
+        <h2 class="text-center">Iniciar sesión en Educando</h2>
+        <a class="c-primaryB" style="opacity: 0">Regístrate</a><!-- Solo relleno-->
+      </div>
+      <div class="row ">
+        <div class="col-12 d-flex align-items-center justify-content-center ">
+          <div class="col-lg-8 col-10  ">
+            <div class="card box-shadow-0 py-3 pb-5 m-0" style="background: none">
+              <div class="card-content">
+                <div class="form-group">
+                  <label class="c-small-bold">Correo electronico</label>
+                  <input type="text" class="form-control" placeholder="Ingresa el nombre de la empresa" [(ngModel)]="email">
+                </div>
+                <div class="form-group">
+                  <label class="c-small-bold">Contraseña</label>
+                  <input type="text" class="form-control" placeholder="Ingresa una descripcion de tu empresa" [(ngModel)]="password">
+                </div>
+                <button class="btn btn-block btn-primary mt-2" [disabled]="!validateFormLogin()" (click)="postLoginCompany()">Iniciar Sesión</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

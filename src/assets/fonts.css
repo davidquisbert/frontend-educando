@@ -1,0 +1,182 @@
+@font-face {
+  /* Desktop/H1A */
+  src: url('/assets/fonts/MuseoSansRounded900.otf') format('opentype');
+  font-family: 'dh1A';
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 36px;
+  letter-spacing: 0em;
+}
+
+@font-face {
+  /* Desktop/H1B */
+  src: url('/assets/fonts/Montserrat-SemiBold.ttf') format('opentype');
+  font-family: 'dh1B';
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: 0em;
+}
+
+@font-face {
+  /* Desktop/H2A */
+  src: url('/assets/fonts/MuseoSansRounded900.otf') format('opentype');
+  font-family: 'dh2A';
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0em;
+}
+
+@font-face {
+  /* Desktop/H2B */
+  src: url('./fonts/Montserrat-SemiBold.ttf') format('opentype');
+  font-family: 'dh2B';
+  font-size: 24px;
+}
+
+@font-face {
+  /* Desktop/H3 */
+  src: url('/assets/fonts/MuseoSansRounded700.otf') format('opentype');
+  font-family: 'dh3';
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0em;
+}
+
+@font-face {
+  /* Desktop/H4 */
+  src: url('/assets/fonts/MuseoSansRounded700.otf') format('opentype');
+  font-family: 'h4';
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0em;
+}
+
+@font-face {
+  /* Desktop/H5 */
+  src: url('/assets/fonts/MuseoSansRounded100.otf') format('opentype');
+  font-family: 'h5';
+  font-size: 16px;
+
+}
+
+@font-face {
+  /* Desktop/Regular */
+  src: url('/assets/fonts/Montserrat-Regular.ttf') format('opentype');
+  font-family: 'c-body';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+}
+
+@font-face {
+  /* Desktop/Regular */
+  src: url('/assets/fonts/Montserrat-Bold.ttf') format('opentype');
+  font-family: 'c-body-bold';
+}
+
+@font-face {
+  /* Desktop/Light */
+  src: url('/assets/fonts/Montserrat-Regular.ttf') format('opentype');
+  font-family: 'c-light';
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 21px;
+  letter-spacing: 0em;
+}
+
+@font-face {
+  /* Desktop/Light */
+  src: url('/assets/fonts/Montserrat-Bold.ttf') format('opentype');
+  font-family: 'c-light-bold';
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 0em;
+}
+
+@font-face {
+  /* Desktop/Small */
+  src: url('./fonts/Montserrat-Light.ttf') format('opentype');
+  font-family: 'c-small';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0em;
+}
+
+@font-face {
+  /* Desktop/Small/Bold */
+  src: url('/assets/fonts/Montserrat-Bold.ttf') format('opentype');
+  font-family: 'c-small-bold';
+
+}
+
+@font-face {
+  /* Desktop/Underlined */
+  src: url('/assets/fonts/Montserrat-Medium.ttf') format('opentype');
+  font-family: 'c-small-medium-underlined';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 0em;
+}
+
+@font-face {
+  /* Desktop/striketrough */
+  src: url('/assets/fonts/Montserrat-Regular.ttf') format('opentype');
+  font-family: 'c-small-regular-striketrough';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+}
+
+/* Mobile */
+
+@font-face {
+  /* Desktop/H1A */
+  src: url('/assets/fonts/MuseoSansRounded900.otf') format('opentype');
+  font-family: 'mh1A';
+}
+
+@font-face {
+  /* Desktop/H1B */
+  src: url('/assets/fonts/Montserrat-SemiBold.ttf') format('opentype');
+  font-family: 'mh1B';
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 29px;
+  letter-spacing: 0em;
+}
+
+@font-face {
+  /* Desktop/H2A */
+  src: url('/assets/fonts/MuseoSansRounded900.otf') format('opentype');
+  font-family: 'mh2A';
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0em;
+}
+
+@font-face {
+  /* Desktop/H2B */
+  src: url('/assets/fonts/Montserrat-SemiBold.ttf') format('opentype');
+  font-family: 'mh2B';
+
+}
+
+@font-face {
+  /* Desktop/H3 */
+  src: url('/assets/fonts/MuseoSansRounded700.otf') format('opentype');
+  font-family: 'mh3';
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0em;
+}

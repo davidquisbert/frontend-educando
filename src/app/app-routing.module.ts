@@ -14,6 +14,8 @@ import { DetailJobPostulantComponent } from './pages/postulant/job/detail/detail
 import { IndexHomePostulantComponent } from './pages/postulant/home/index/index-home-postulant.component';
 import { CompanyHomePostulantComponent } from './pages/postulant/home/company/company-home-postulant.component';
 import { AboutHomePostulantComponent } from './pages/postulant/home/about/about-home-postulant.component';
+import { DetailCompanyComponent } from './pages/company/detail-company/detail-company.component';
+
 // profile
 import { IndexProfilePostulantComponent } from './pages/postulant/profile/index/index-profile-postulant.component';
 import { JobProfilePostulantComponent } from './pages/postulant/profile/job/job-profile-postulant.component';
@@ -24,18 +26,29 @@ import { IndexHomeCompanyComponent } from './pages/company/home/index/index-home
 import { IndexJobCompanyComponent } from './pages/company/job/index/index-job-company.component';
 import { DetailJobCompanyComponent } from './pages/company/job/detail/detail-job-company.component';
 import { IndesPostulantCompanyComponent } from './pages/company/postunt/indes/indes-postulant-company.component';
+import {IndexRegisterCompanyComponent} from "./pages/company/register/index/index-register-company.component";
+import {PublishJobCompanyComponent} from "./pages/company/job/publish/publish-job-company.component";
 
 const routes: Routes = [
   // Postulant
-  { path: '', component: IndexHomePostulantComponent},
+  { path: '', component: IndexHomePostulantComponent, data: {preload: true}},
   { path: 'trabajo', component: IndexJobPostulantComponent},
   { path: 'trabajo/:id', component: DetailJobPostulantComponent},
+  { path: 'empresas', component: CompanyHomePostulantComponent},
+  { path: 'empresas/:id', component: DetailCompanyComponent},
+  { path: 'nosotros', component: AboutHomePostulantComponent},
   { path: 'perfil', component: IndexProfilePostulantComponent},
   // Administrator
   { path: 'administrador', component: IndexHomeAdministratorComponent},
+  { path: 'administrador/login', component: IndexLoginAdministratorComponent},
   { path: 'administrador/trabajo/:id ', component: IndexJobAdministratorComponent},
   // Company
   { path: 'empresa', component: IndexHomeCompanyComponent},
+  { path: 'empresa/registro', component: IndexRegisterCompanyComponent},
+  { path: 'empresa/login', component: IndexLoginCompanyComponent},
+  { path: 'empresa/oferta-laboral', component: IndexJobCompanyComponent},
+  { path: 'empresa/oferta-laboral/:id', component: DetailJobCompanyComponent},
+  { path: 'empresa/publica-trabajo', component: PublishJobCompanyComponent},
 
 ];
 

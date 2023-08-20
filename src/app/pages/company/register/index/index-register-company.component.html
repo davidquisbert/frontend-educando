@@ -1,0 +1,92 @@
+  <section>
+    <div class="row" style="max-width: 100%">
+      <div class="col-lg-6 col-12 d-lg-block d-none">
+        <img src="/assets/images/back12.jpg">
+      </div>
+      <div class="col-lg-6 col-12 align-self-center">
+        <section >
+          <div class="container">
+            <div class="d-flex justify-content-between flex-row">
+              <a class="c-primaryB" style="opacity: 0">Regístrate <i class="la icon-arrow_forward"></i></a>
+              <h2 class="text-center">Regístrate como empresa</h2>
+              <a class="c-primaryB" style="opacity: 0">Regístrate</a><!-- Solo relleno-->
+            </div>
+          </div>
+        </section>
+        <section class="row flexbox-container ">
+          <div class="col-12 d-flex align-items-center justify-content-center ">
+            <div class="col-lg-10 col-10 p-0 ">
+              <div class="card box-shadow-0 py-3 pb-5 m-0" style="background: none">
+                <div class="card-content">
+                  <div class="form-row">
+                    <div class="col-md-6 col-6">
+                      <div class="form-group">
+                        <label class="c-small-bold">Correo electronico<span class="color-primary-c">*</span></label>
+                        <input type="email" class="form-control" placeholder="Ingresa el nombre de usuario" [(ngModel)]="email">
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-6">
+                      <div class="form-group">
+                        <label class="c-small-bold">Contraseña<span class="color-primary-c">*</span></label>
+                        <input type="number" class="form-control" placeholder="Ingresa una contraseña" [(ngModel)]="password">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="c-small-bold">Nombre<span class="color-primary-c">*</span></label>
+                    <input type="text" class="form-control" placeholder="Ingresa el nombre de la empresa" [(ngModel)]="name">
+                  </div>
+                  <div class="form-group">
+                    <label class="c-small-bold">descripcion<span class="color-primary-c">*</span></label>
+                    <input type="text" class="form-control" placeholder="Ingresa una descripcion de tu empresa" [(ngModel)]="description">
+                  </div>
+                  <div class="form-group">
+                    <label class="c-small-bold">Numero de celular<span class="color-primary-c">*</span></label>
+                    <input type="text" class="form-control" placeholder="Ingresa un numero de celular" [(ngModel)]="numberPhone" >
+                    <label class="c-small-light pt-75">Usaremos este número para que los postulantes se comuniquen contigo.</label>
+                  </div>
+                  <div class="form-group">
+                    <label class="c-small-bold">Dirección</label>
+                    <input type="text" class="form-control" placeholder="Ingresa la dirección de tu empresa" [(ngModel)]="address">
+                  </div>
+                  <div class="form-group">
+                    <label class="c-small-bold">Ciudad<span class="color-primary-c">*</span></label>
+                    <div class="input-group">
+                      <select class="form-control custom-select" [(ngModel)]="city">
+                        <option value="" disabled selected>Selecciona una ciudad</option>
+                        <option value="Santa Cruz">Santa Cruz</option>
+                        <option value="La Paz">La Paz</option>
+                        <option value="Cochabamba">Cochabamba</option>
+                        <option value="Oruro">Oruro</option>
+                        <option value="Potosi">Potosi</option>
+                        <option value="Chuquisaca">Chuquisaca</option>
+                        <option value="Tarija">Tarija</option>
+                        <option value="Beni">Beni</option>
+                        <option value="Pando">Pando</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group mb-1">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="1" name="tratamiento" [(ngModel)]="showName" >
+                      <label class="custom-control-label description-form c-small-light" for="1">Mostrar nombre de la empresa en mis ofertas laborales </label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 pl-0 text-center">
+                      <div style="flex-grow: 1;">
+                        <div id="recaptcha-container"></div>
+                      </div>
+                      <br>
+                      <button class="btn btn-primary mt-2" >Enviar código de verificación</button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>

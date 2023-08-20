@@ -440,26 +440,26 @@ input:focus ~ .bg-primary {
   background-color: #666ee8 !important; }
 
 .btn-primary {
-  border-color: #666ee8 !important;
-  background-color: #666ee8 !important;
+  border-color: #30a5bf !important;
+  background-color: #30a5bf !important;
   color: #FFFFFF; }
   .btn-primary:hover {
-    border-color: #7c83eb !important;
-    background-color: #7c83eb !important;
+    border-color: #30a5bf !important;
+    background-color: #30a5bf !important;
     color: #FFF !important; }
   .btn-primary:focus, .btn-primary:active {
-    border-color: #232fde !important;
-    background-color: #232fde !important;
+    border-color: #30a5bf !important;
+    background-color: #30a5bf !important;
     color: #FFF !important; }
   .btn-primary.btn-glow {
     box-shadow: 0px 1px 20px 1px rgba(102, 110, 232, 0.6); }
 
 .btn-outline-primary {
-  border-color: #666ee8;
+  border-color: #FFFFFF;
   background-color: transparent;
-  color: #666ee8; }
+  color: #FFFFFF; }
   .btn-outline-primary:hover {
-    background-color: #666ee8;
+    background-color: #30a5bf;
     color: #FFF !important; }
   .btn-outline-primary.btn-glow {
     box-shadow: 0px 1px 20px 1px rgba(102, 110, 232, 0.6); }
@@ -1138,16 +1138,16 @@ input:focus ~ .bg-secondary {
   background-color: #6b6f82 !important; }
 
 .btn-secondary {
-  border-color: #6b6f82 !important;
-  background-color: #6b6f82 !important;
+  border-color: #0D2B41 !important;
+  background-color: #0D2B41 !important;
   color: #FFFFFF; }
   .btn-secondary:hover {
-    border-color: #777b8f !important;
-    background-color: #777b8f !important;
+    border-color: #0D2B41 !important;
+    background-color: #0D2B41 !important;
     color: #FFF !important; }
   .btn-secondary:focus, .btn-secondary:active {
-    border-color: #484b58 !important;
-    background-color: #484b58 !important;
+    border-color: #0D2B41 !important;
+    background-color: #0D2B41 !important;
     color: #FFF !important; }
   .btn-secondary.btn-glow {
     box-shadow: 0px 1px 20px 1px rgba(107, 111, 130, 0.6); }
@@ -2317,7 +2317,7 @@ input:focus ~ .bg-info {
   color: #1e9ff2 !important; }
 
 .bg-info {
-  background-color: #000000 !important; }
+  background-color: #0d2b3f !important; }
   .bg-info .card-header,
   .bg-info .card-footer {
     background-color: transparent; }

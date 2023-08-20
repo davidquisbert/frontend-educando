@@ -1,0 +1,64 @@
+<app-header></app-header>
+<section>
+  <div class="app-content content">
+    <div class="header">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center py-5">
+          <div class="d-flex">
+            <img src="/assets/images/work.png" class="img-fluid m-2" width="60" height="60">
+            <div class="">
+              <h3>{{ company.name }}</h3>
+              <ul class="list-style-icons d-flex mb-50 p-0">
+                <li class="d-flex align-items-center mr-1 c-small-light"><i class="la icon-work"></i>{{ company.area.name }}</li>
+                <li class="d-flex align-items-center mr-1 c-small-light"><i class="la icon-phone_android"></i>{{ company.numberPhone }}</li>
+                <li class="d-flex align-items-center mr-1 c-small-light"><i class="la icon-mail"></i>{{ company.email }}</li>
+              </ul>
+              <ul class="list-style-icons d-flex p-0">
+                <li class="c-small-light mr-2"><span class="c-small-bold">Industria primaria: </span> {{ company.area.name }}</li>
+                <li class="c-small-light mr-2"><span class="c-small-bold">Dirección: </span> {{ company.address }}</li>
+                <li class="c-small-light mr-2"><span class="c-small-bold">Ciudad: </span> {{ company.city }}</li>
+              </ul>
+              <a class="c-small-light"><span class="c-small-bold">Sitio web: </span>{{ company.webSite }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="my-5">
+  <div class="">
+    <div class="container">
+      <h2 class="h2B">Acerca de la Empresa</h2>
+      <label class="c-light-black my-3">Bienvenido a <span class="c-bold-black">{{ company.name }}</span></label>
+      <p>{{ company.description }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="my-5">
+  <div class="">
+    <div class="container">
+      <h2 class="h2B">{{ job.length + ' trabajos en ' + company.name }}</h2>
+      <div class="row">
+        <div class="col-12 my-1" *ngFor="let item of job">
+          <div class="d-flex border-lead cursor-pointer" [routerLink]="'/trabajo/'+item.id">
+            <img src="/assets/images/work.png" class="img-fluid m-1" width="60" height="60">
+            <div class="">
+              <h3>{{ item.title }}</h3>
+              <ul class="list-style-icons d-flex mb-50 p-0">
+                <li class="d-flex align-items-center mr-50 c-small-light"><i class="la icon-work"></i>{{ item.areas.name }}</li>
+                <li class="d-flex align-items-center mr-50 c-small-light"><i class="la icon-location_on"></i>{{ item.location }}</li>
+                <li class="d-flex align-items-center mr-50 c-small-light"><i class="la icon-calendar_month"></i>{{ formatFecha(item.publicationDate)}}</li>
+              </ul>
+              <ul class="list-style-icons d-flex p-0">
+                <li class="round px-1 mr-50 job-info-category c-small-light">{{ item.typeJob.name }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

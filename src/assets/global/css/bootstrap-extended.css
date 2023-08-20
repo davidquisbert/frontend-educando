@@ -772,10 +772,10 @@ select.form-control {
     height: 5.15rem;
     float: left;
     position: relative;
-    padding: 0rem 0.85rem 0 1.2rem;
+    /*padding: 0rem 0.85rem 0 1.2rem;*/
     transition: 300ms ease all; }
     .header-navbar .navbar-header .navbar-brand {
-      padding: 18px 0px;
+      /*padding: 18px 0px;*/
       margin-right: 0; }
       .header-navbar .navbar-header .navbar-brand .brand-logo {
         width: 36px; }
@@ -951,7 +951,7 @@ select.form-control {
 .navbar-semi-light {
   background: #6b6f82; }
   .navbar-semi-light .navbar-header {
-    background: #fff; }
+    background: #0d2b3f; }
     .navbar-semi-light .navbar-header .brand-text {
       color: #464855; }
   .navbar-semi-light .navbar-nav li {
