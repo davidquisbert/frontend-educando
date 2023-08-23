@@ -1,1 +1,169 @@
-<p>index-profile-postulant works!</p>
+<app-header></app-header>
+<div class="app-content content">
+  <section class="mt-5">
+    <div class="container">
+      <div class="d-flex justify-content-between flex-row">
+        <a class="c-primaryB" style="opacity: 0">Regístrate <i class="la icon-arrow_forward"></i></a>
+        <h2 class="text-center">Información de usuario</h2>
+        <a class="c-primaryB" style="opacity: 0">Regístrate</a><!-- Solo relleno-->
+      </div>
+    </div>
+  </section>
+
+  <section class="row flexbox-container ">
+    <div class="col-12 d-flex align-items-center justify-content-center ">
+      <div class="col-lg-7 col-md-8 col-12 p-0 ">
+        <div class="card border-8 p-3 m-0" style="background: white">
+          <div class="card-content">
+            <div class="form-group">
+              <label class="c-small-bold">Correo electronico<span class="color-primary-c">*</span></label>
+              <input type="email" class="form-control" placeholder="Ingresa tu correo electronico" >
+            </div>
+            <div class="form-row">
+              <div class="col-md-6 col-6">
+                <div class="form-group">
+                  <label class="c-small-bold">Nombre<span class="color-primary-c">*</span></label>
+                  <input type="text" class="form-control" placeholder="Ingresa tu nombre" [(ngModel)]="user.name">
+                </div>
+              </div>
+              <div class="col-md-6 col-6">
+                <div class="form-group">
+                  <label class="c-small-bold">Apellidos<span class="color-primary-c">*</span></label>
+                  <input type="text" class="form-control" placeholder="Ingresa tus apellidos" [(ngModel)]="user.lastName">
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-6 col-6">
+                <div class="form-group">
+                  <label class="c-small-bold">Numero de celular<span class="color-primary-c">*</span></label>
+                  <input type="number" class="form-control" placeholder="Ingresa tu numero de celular" [(ngModel)]="user.numberPhone">
+                </div>
+              </div>
+              <div class="col-md-6 col-6">
+                <div class="form-group">
+                  <label class="c-small-bold">Cumpleaños<span class="color-primary-c">*</span></label>
+                  <input type="date" class="form-control" placeholder="Ingresa tu fecha de nacimiento" [(ngModel)]="user.birthdate">
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-6 col-6">
+                <div class="form-group">
+                  <label class="c-small-bold">Ciudad<span class="color-primary-c">*</span></label>
+                  <div class="input-group">
+                    <select class="form-control custom-select" [(ngModel)]="user.nacionality">
+                      <option value="" disabled selected>Selecciona una ciudad</option>
+                      <option value="Santa Cruz">Santa Cruz</option>
+                      <option value="La Paz">La Paz</option>
+                      <option value="Cochabamba">Cochabamba</option>
+                      <option value="Oruro">Oruro</option>
+                      <option value="Potosi">Potosi</option>
+                      <option value="Chuquisaca">Chuquisaca</option>
+                      <option value="Tarija">Tarija</option>
+                      <option value="Beni">Beni</option>
+                      <option value="Pando">Pando</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-6">
+                <div class="form-group">
+                  <label class="c-small-bold">dirección<span class="color-primary-c">*</span></label>
+                  <input type="text" class="form-control" placeholder="Ingresa tu dirección" [(ngModel)]="user.address">
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-6 col-6">
+                <div class="form-group">
+                  <label class="c-small-bold">Género<span class="color-primary-c">*</span></label>
+                  <div class="input-group">
+                    <select class="form-control custom-select" [(ngModel)]="user.gender">
+                      <option value="" disabled selected>Selecciona una opción</option>
+                      <option value="Masculino">Masculino</option>
+                      <option value="Femenino">Femenino</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-6">
+                <div class="form-group">
+                  <label class="c-small-bold">Estado civil<span class="color-primary-c">*</span></label>
+                  <div class="input-group">
+                    <select class="form-control custom-select" [(ngModel)]="user.maritalStatus">
+                      <option value="" disabled selected>Selecciona una opción</option>
+                      <option value="Soltero">Soltero</option>
+                      <option value="Casado">Casado</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="card border-8 p-3 m-0" style="background: white">
+          <div class="card-content">
+            <h3>Información del candidato</h3>
+            <div class="form-group">
+              <label class="c-small-bold">Informacion biografica a añade una descripcion general sobre ti<span class="color-primary-c">*</span></label>
+              <textarea type="text" class="form-control" placeholder="Ingresa tu biografia" [(ngModel)]="user.curriculumVitae.description" style="background: #F0F5F7"></textarea>
+            </div>
+
+          </div>
+        </div>
+        <br>
+        <div class="card border-8 p-3 m-0" style="background: white">
+          <div class="card-content">
+            <h3>Experiencia - Educación - Cursos</h3>
+            <label class="c-small-bold my-1">Experiencia</label>
+            <div class="row">
+              <ng-container *ngFor="let item of user.curriculumVitae.training">
+                <div class="col-md-6 col-12" *ngIf="item.typeTraining.id == 1" style="background: ">
+                  <div class="card p-1" style="background: rgba(25, 103, 210, .1)">
+                    <label class="c-small-light my-50">Empresa: <strong class="c-small-bold">{{ item.company }}</strong></label>
+                    <label class="c-small-light my-50">Cargo: {{ item.appointment }}</label>
+                    <label class="c-small-light my-50">Tiempo: {{ formatFecha(item.startDate) + ' - ' + formatFecha(item.endDate) }}</label>
+                    <label class="c-small-light my-50">Pais/Ciudad: {{ 'Bolivia/' + item.city }}</label>
+                    <label class="c-small-light my-50">Información: {{ item.information }}</label>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+            <div class="dropdown-divider"></div>
+            <label class="c-small-bold my-1">Educación</label>
+            <div class="row">
+              <ng-container *ngFor="let item of user.curriculumVitae.training">
+                <div class="col-md-6 col-12" *ngIf="item.typeTraining.id == 2" style="background: ">
+                  <div class="card p-1" style="background: rgba(25, 103, 210, .1)">
+                    <label class="c-small-light my-50">Institución: <strong class="c-small-bold">{{ item.institution }}</strong></label>
+                    <label class="c-small-light my-50">Carrera o especialidad: {{ item.appointment }}</label>
+                    <label class="c-small-light my-50">Tiempo: {{ formatFecha(item.startDate) + ' - ' + formatFecha(item.endDate) }}</label>
+                    <label class="c-small-light my-50">Información: {{ item.information }}</label>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+            <div class="dropdown-divider"></div>
+            <label class="c-small-bold my-1">Cursos</label>
+            <div class="row">
+              <ng-container *ngFor="let item of user.curriculumVitae.training">
+                <div class="col-md-6 col-12" *ngIf="item.typeTraining.id == 3" style="background: ">
+                  <div class="card p-1" style="background: rgba(25, 103, 210, .1)">
+                    <label class="c-small-light my-50">Empresa: <strong class="c-small-bold">{{ item.company }}</strong></label>
+                    <label class="c-small-light my-50">Titulo: {{ item.appointment }}</label>
+                    <label class="c-small-light my-50">Tiempo: {{ formatFecha(item.startDate) + ' - ' + formatFecha(item.endDate) }}</label>
+                    <label class="c-small-light my-50">Información: {{ item.information }}</label>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+</div>

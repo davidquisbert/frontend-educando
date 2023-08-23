@@ -28,7 +28,7 @@
                     <div class="col-md-6 col-6">
                       <div class="form-group">
                         <label class="c-small-bold">Contraseña<span class="color-primary-c">*</span></label>
-                        <input type="number" class="form-control" placeholder="Ingresa una contraseña" [(ngModel)]="password">
+                        <input type="password" class="form-control" placeholder="Ingresa una contraseña" [(ngModel)]="password">
                       </div>
                     </div>
                   </div>
@@ -37,17 +37,26 @@
                     <input type="text" class="form-control" placeholder="Ingresa el nombre de la empresa" [(ngModel)]="name">
                   </div>
                   <div class="form-group">
-                    <label class="c-small-bold">descripcion<span class="color-primary-c">*</span></label>
-                    <input type="text" class="form-control" placeholder="Ingresa una descripcion de tu empresa" [(ngModel)]="description">
+                    <label class="c-small-bold">Descripcion<span class="color-primary-c">*</span></label>
+                    <div class="NgxEditor__Wrapper" style="min-height: 100px">
+                      <ngx-editor-menu  [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+                      <ngx-editor  [editor]="editor" [ngModel]="html" [disabled]="false" [placeholder]="'Type here...'" [(ngModel)]="description"></ngx-editor>
+                    </div>
                   </div>
                   <div class="form-group">
                     <label class="c-small-bold">Numero de celular<span class="color-primary-c">*</span></label>
-                    <input type="text" class="form-control" placeholder="Ingresa un numero de celular" [(ngModel)]="numberPhone" >
+                    <input type="number" class="form-control" placeholder="Ingresa un numero de celular" [(ngModel)]="phoneNumber" >
                     <label class="c-small-light pt-75">Usaremos este número para que los postulantes se comuniquen contigo.</label>
                   </div>
                   <div class="form-group">
                     <label class="c-small-bold">Dirección</label>
                     <input type="text" class="form-control" placeholder="Ingresa la dirección de tu empresa" [(ngModel)]="address">
+                  </div>
+                  <div class="form-group">
+                    <label class="c-small-bold">Foto de perfil</label>
+                    <button class="btn btn-primary d-block" (click)="selectFile()"><i class="li icon-upload"></i>Elige un archivo</button>
+                    <input type="file" (change)="onFileChanged($event)" #fileInput style="display: none">
+                    <p class="p-small py-75">{{fileName}}</p>
                   </div>
                   <div class="form-group">
                     <label class="c-small-bold">Ciudad<span class="color-primary-c">*</span></label>
@@ -66,10 +75,32 @@
                       </select>
                     </div>
                   </div>
+                  <div class="form-group">
+                    <label class="c-small-bold">Area de estudio para el puesto de trabajo<span class="color-primary-c">*</span></label>
+                    <div class="input-group">
+                      <select class="form-control custom-select" [(ngModel)]="area" >
+                        <option value="" disabled selected>Selecciona una ciudad</option>
+                        <ng-container *ngFor="let item of areas">
+                          <option [value]="item.id">{{ item.name }}</option>
+                        </ng-container>
+                      </select>
+                    </div>
+                  </div>
                   <div class="form-group mb-1">
                     <div class="custom-control custom-checkbox">
                       <input type="checkbox" class="custom-control-input" id="1" name="tratamiento" [(ngModel)]="showName" >
                       <label class="custom-control-label description-form c-small-light" for="1">Mostrar nombre de la empresa en mis ofertas laborales </label>
+                    </div>
+                  </div>
+                  <div class="form-group" *ngIf="showCode">
+                    <label class="c-small-bold">Ingresa el código que te enviamos al número {{ phoneNumber }}:</label>
+                    <div class="d-flex">
+                      <input type="text" class="form-control mr-1" placeholder="*" id="code_1" [(ngModel)]="code_1" (keyup)="onKeyUp($event, 'code_2')">
+                      <input type="text" class="form-control mr-1" placeholder="*" id="code_2" [(ngModel)]="code_2" (keyup)="onKeyUp($event, 'code_3')">
+                      <input type="text" class="form-control mr-1" placeholder="*" id="code_3" [(ngModel)]="code_3" (keyup)="onKeyUp($event, 'code_4')">
+                      <input type="text" class="form-control mr-1" placeholder="*" id="code_4" [(ngModel)]="code_4" (keyup)="onKeyUp($event, 'code_5')">
+                      <input type="text" class="form-control mr-1" placeholder="*" id="code_5" [(ngModel)]="code_5" (keyup)="onKeyUp($event, 'code_6')">
+                      <input type="text" class="form-control" placeholder="*" id="code_6" [(ngModel)]="code_6" (keyup)="onKeyUp($event, 'verifyCode')">
                     </div>
                   </div>
                   <div class="row">
@@ -78,7 +109,7 @@
                         <div id="recaptcha-container"></div>
                       </div>
                       <br>
-                      <button class="btn btn-primary mt-2" >Enviar código de verificación</button>
+                      <button class="btn btn-primary mt-2" [disabled]="!validateForm()" (click)="sendVerificationCode()">Enviar código de verificación</button>
                     </div>
                   </div>
 

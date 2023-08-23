@@ -4,6 +4,9 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxEditorModule } from 'ngx-editor';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +36,7 @@ import { IndexRegisterCompanyComponent } from './pages/company/register/index/in
 import { HeaderCompanyComponent } from './components/header-company/header-company.component';
 import { PublishJobCompanyComponent } from './pages/company/job/publish/publish-job-company.component';
 import { HeaderAdministratorComponent } from './components/header-administrator/header-administrator.component';
+import {environment} from "../environment/enviroments";
 
 
 @NgModule({
@@ -67,7 +71,12 @@ import { HeaderAdministratorComponent } from './components/header-administrator/
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    NgxEditorModule
+    NgxEditorModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

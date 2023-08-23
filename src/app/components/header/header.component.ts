@@ -25,11 +25,12 @@ export class HeaderComponent {
   password = '';
   date = '';
   gender = '';
+  photo = '';
   numberPhone = '';
   address = '';
   city = '';
   civilStatus = '';
-  student = '';
+  student = false;
 
   constructor(private postulantService: PostulantService,
               private companyService: CompanyService,
@@ -64,6 +65,24 @@ export class HeaderComponent {
       return false;
     }
     return true;
+  }
+
+  postSavePostulant(){
+    this.postulantService.postPostulantSave(this.email.trim(), this.password.trim(), this.name.trim(), this.lastName.trim(),
+      this.address.trim(), this.city, this.gender, this.photo, this.numberPhone, this.date, this.student)
+      .subscribe(
+        (response: RespuestaApi<any>) => {
+          if (response.code === 0) {
+            this.postulant = response.data;
+            this.postulantService.setPostulantLoggedIn(this.postulant);
+            window.location.href = '/trabajo'
+          } else {
+          }
+        },
+        err => {
+          console.log(err);
+        }
+      )
   }
 
   validateFormLogin(): boolean {

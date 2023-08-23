@@ -67,13 +67,32 @@ export interface Postulants {
   numberPhone: string;
   birthdate: string;
   student: boolean;
-  curriculumVitae: string;
+  curriculumVitae: CurriculumVitae;
 }
 
 export interface CurriculumVitae {
   id: number;
   description: string;
-  training: string;
+  training: Training[];
+}
+
+export interface Training {
+  id: number;
+  company: string;
+  appointment: string;
+  city: string;
+  institution: string;
+  degree: string;
+  startDate: string;
+  endDate: string;
+  current: boolean;
+  information: string;
+  typeTraining: TypeTraining;
+}
+
+export interface TypeTraining {
+  id: number;
+  name: string;
 }
 
 export interface Administrator {

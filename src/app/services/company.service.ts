@@ -34,8 +34,9 @@ export class CompanyService {
     return this.http.get(url, {headers});
   }
 
+
   postCompanySave(user: string, password: string, name: string, description: string, numberPhone: string, email: string,
-              webSite: string, address: string, photo: string, city: string, useName: string, idArea: number): Observable<object> {
+              webSite: string, address: string, photo: string, city: string, useName: boolean, idArea: number): Observable<object> {
     const url = `${environment.urlApi}/company`;
     const params = {
       user,

@@ -14,6 +14,11 @@ export class PostulantService {
 
   constructor(private http: HttpClient) {}
 
+  getPostulant(id: number): Observable<object> {
+    const url = `${environment.urlApi}/postulant/${id}`;
+    return this.http.get(url, {headers});
+  }
+
   getJobArea(id: number): Observable<object> {
     const url = `${environment.urlApi}/job/area/${id}`;
     return this.http.get(url, {headers});
@@ -24,7 +29,7 @@ export class PostulantService {
     return this.http.get(url, {headers});
   }
 
-  postPostlantSave(user: string, password: string, name: string, lastName: string, address: string, nacionality: string,
+  postPostulantSave(user: string, password: string, name: string, lastName: string, address: string, nacionality: string,
                    gender: string, photo: string, numberPhone: string, birthdate: string, student: boolean): Observable<object> {
     const url = `${environment.urlApi}/postulant`;
     const params = {
