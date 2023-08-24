@@ -101,7 +101,7 @@ export class HeaderComponent {
           if (response.code === 0 && response.data !== null) {
               this.postulant = response.data;
               this.postulantService.setPostulantLoggedIn(this.postulant);
-              window.location.href = '/trabajo'
+              window.location.href = '/perfil'
           } else {
             console.log("Usuario no encontrado");
           }

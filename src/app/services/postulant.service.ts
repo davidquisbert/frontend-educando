@@ -19,14 +19,17 @@ export class PostulantService {
     return this.http.get(url, {headers});
   }
 
-  getJobArea(id: number): Observable<object> {
-    const url = `${environment.urlApi}/job/area/${id}`;
-    return this.http.get(url, {headers});
-  }
-
   getJob(id: number): Observable<object> {
     const url = `${environment.urlApi}/job/${id}`;
     return this.http.get(url, {headers});
+  }
+
+  getJobArea(areaIds: any): Observable<object> {
+    const url = `${environment.urlApi}/job/areas`;
+    const params = {
+      areaIds,
+    };
+    return this.http.post(url, params, {headers});
   }
 
   postPostulantSave(user: string, password: string, name: string, lastName: string, address: string, nacionality: string,
@@ -59,6 +62,66 @@ export class PostulantService {
     };
     return this.http.post(url, params, {headers});
   }
+
+  postTraining(idCV: number, company: string, institution: string, appointment: string, city: string,
+         degree: string, startDate: string, endDate: string, current: boolean, information: string,
+               idTypeTraining: number, descriptionCV: string): Observable<object> {
+    const url = `${environment.urlApi}/curriculum-vitae`;
+    const params = {
+      idCV,
+      company,
+      institution,
+      appointment,
+      city,
+      degree,
+      startDate,
+      endDate,
+      current,
+      information,
+      idTypeTraining,
+      descriptionCV
+    };
+    return this.http.post(url, params, {headers});
+  }
+
+  getTraining(id: number): Observable<object> {
+    const url = `${environment.urlApi}/training/${id}`;
+    return this.http.get(url, {headers});
+  }
+
+  putTraining(id: number, company: string, institution: string, appointment: string, city: string, degree: string,
+              startDate: string, endDate: string, current: boolean, information: string,): Observable<object> {
+    const url = `${environment.urlApi}/training/${id}`;
+    const params = {
+      company,
+      institution,
+      appointment,
+      city,
+      degree,
+      startDate,
+      endDate,
+      current,
+      information
+    };
+    return this.http.put(url, params, {headers});
+  }
+
+  deleteTraining(id: number): Observable<object> {
+    const url = `${environment.urlApi}/training/${id}`;
+    return this.http.delete(url, {headers});
+  }
+
+  getAddArea(idCV: number, idArea: number): Observable<object> {
+    const url = `${environment.urlApi}/curriculum-vitae/addArea/idCV=${idCV}&idArea=${idArea}`;
+    return this.http.get(url, {headers});
+  }
+
+  getRemeveArea(idCV: number, idArea: number): Observable<object> {
+    const url = `${environment.urlApi}/curriculum-vitae/removeArea/idCV=${idCV}&idArea=${idArea}`;
+    return this.http.get(url, {headers});
+  }
+
+
 
   postLogin(email: string, password: string): Observable<object> {
       const url = `${environment.urlApi}/user/login`;

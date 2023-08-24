@@ -1,18 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {JobDetail, RespuestaApi} from "../../../../interfaces/interfaces";
 import {PostulantService} from "../../../../services/postulant.service";
-import {AdministratorService} from "../../../../services/administrator.service";
 import {ActivatedRoute} from "@angular/router";
-import {formatFecha} from "../../../../utilities/utilities";
+import { formatFecha } from 'src/app/utilities/utilities';
+import {AdministratorService} from "../../../../services/administrator.service";
 
 @Component({
-  selector: 'app-detail-job-company',
-  templateUrl: './detail-job-company.component.html',
-  styleUrls: ['./detail-job-company.component.css']
+  selector: 'app-detail-job-administrator',
+  templateUrl: './detail-job-administrator.component.html',
+  styleUrls: ['./detail-job-administrator.component.css']
 })
-export class DetailJobCompanyComponent implements OnInit {
+export class DetailJobAdministratorComponent implements OnInit {
   job: JobDetail;
   id = 0;
+
+
+  protected readonly formatFecha = formatFecha;
 
   constructor(private postulantService: PostulantService,
               private administratorService: AdministratorService,
@@ -44,7 +47,6 @@ export class DetailJobCompanyComponent implements OnInit {
         (response: RespuestaApi<any>) => {
           if (response.code === 0) {
             this.job = response.data;
-            window.location.href = '/empresa/oferta-laboral';
           }
         },
         err => {
@@ -52,6 +54,4 @@ export class DetailJobCompanyComponent implements OnInit {
         }
       )
   }
-
-  protected readonly formatFecha = formatFecha;
 }

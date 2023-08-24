@@ -34,7 +34,7 @@ export class IndexLoginCompanyComponent implements OnInit {
           if (response.code === 0 && response.data !== null) {
             this.company = response.data;
             this.companyService.setCompanyLoggedIn(this.company);
-            window.location.href = '/trabajo'
+            window.location.href = '/empresa'
           } else {
             console.log("Usuario no encontrado");
           }

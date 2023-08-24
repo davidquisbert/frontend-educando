@@ -45,6 +45,31 @@
   background: rgba(25,103,210,.15);
 }
 
+.job-pendiente {
+  color: #f2a81e;
+  background: rgba(210, 158, 25, 0.15);
+}
+
+.job-activo {
+  color: #15a64b;
+  background: rgba(37, 210, 25, 0.15);
+}
+
+.job-rechazado {
+  color: #cc0000;
+  background: rgba(210, 25, 25, 0.15);
+}
+
+.job-finalizado {
+  color: #1e22f2;
+  background: rgba(31, 25, 210, 0.15);
+}
+
 .border-8 {
   border-radius: 8px;
 }
+
+.header {
+  background-image: url("/assets/images/bacground-detail.png");
+}
+

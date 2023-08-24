@@ -1,81 +1,121 @@
 <app-header-company></app-header-company>
 <div class="app-content content">
-  <section class="mt-5">
-    <div class="container">
-      <div class="d-flex justify-content-between flex-row">
-        <a class="c-primaryB" style="opacity: 0">Regístrate <i class="la icon-arrow_forward"></i></a>
-        <h2 class="text-center">Crear una nueva oferta laboral</h2>
-        <a class="c-primaryB" style="opacity: 0">Regístrate</a><!-- Solo relleno-->
-      </div>
-    </div>
-  </section>
-
-
-  <section class="row flexbox-container ">
-    <div class="col-12 d-flex align-items-center justify-content-center ">
-      <div class="col-lg-5 col-md-8 col-12 p-0 ">
-        <div class="card box-shadow-0 py-3 pb-5 m-0" style="background: none">
-          <div class="card-content">
-            <div class="form-group">
-              <label class="c-small-bold">Titulo<span class="color-primary-c">*</span></label>
-              <input type="text" class="form-control" placeholder="Ingresa el titulo del puesto de trabajo" [(ngModel)]="title">
-            </div>
-            <div class="form-group">
-              <label class="c-small-bold">Descripcion<span class="color-primary-c">*</span></label>
-              <div class="NgxEditor__Wrapper">
-                <ngx-editor-menu  [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
-                <ngx-editor  [editor]="editor" [ngModel]="html" [disabled]="false" [placeholder]="'Type here...'" [(ngModel)]="description"></ngx-editor>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="c-small-bold">Ciudad<span class="color-primary-c">*</span></label>
-              <div class="input-group">
-                <select class="form-control custom-select" [(ngModel)]="city">
-                  <option value="" disabled selected>Selecciona una ciudad</option>
-                  <option value="Santa Cruz">Santa Cruz</option>
-                  <option value="La Paz">La Paz</option>
-                  <option value="Cochabamba">Cochabamba</option>
-                  <option value="Oruro">Oruro</option>
-                  <option value="Potosi">Potosi</option>
-                  <option value="Chuquisaca">Chuquisaca</option>
-                  <option value="Tarija">Tarija</option>
-                  <option value="Beni">Beni</option>
-                  <option value="Pando">Pando</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="c-small-bold">Tipo de trabajo<span class="color-primary-c">*</span></label>
-              <div class="input-group">
-                <select class="form-control custom-select" [(ngModel)]="typeJob">
-                  <option value="" disabled selected>Selecciona una ciudad</option>
-                  <option value="Masculino">Tiempo completo</option>
-                  <option value="Femenino">Femenino</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="c-small-bold">Area de estudio para el puesto de trabajo<span class="color-primary-c">*</span></label>
-              <div class="input-group">
-                <select class="form-control custom-select" [(ngModel)]="aresStudy" >
-                  <option value="" disabled selected>Selecciona una ciudad</option>
-                  <option value="Masculino">Marketing</option>
-                  <option value="Femenino">Femenino</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-12 pl-0 text-center">
-                <button class="btn btn-primary px-4 mt-2" [disabled]="!validateForm()" (click)="save()">Enviar oferta laboral</button>
-              </div>
-            </div>
-
-          </div>
+  <div class="container">
+    <div class="my-5">
+      <div class="row">
+        <div class="col-md-3 col-12">
+          <button [ngClass]="{'btn-outline-secondary': state != 1, 'btn-primary': state == 1}" class="btn btn-block" (click)="state = 1">Pendientes</button>
+        </div>
+        <div class="col-md-3 col-12">
+          <button [ngClass]="{'btn-outline-secondary': state != 2, 'btn-primary': state == 2}" class="btn btn-block" (click)="state = 2">Activo</button>
+        </div>
+        <div class="col-md-3 col-12">
+          <button [ngClass]="{'btn-outline-secondary': state != 3, 'btn-primary': state == 3}" class="btn btn-block" (click)="state = 3">Rechazados</button>
+        </div>
+        <div class="col-md-3 col-12">
+          <button [ngClass]="{'btn-outline-secondary': state != 4, 'btn-primary': state == 4}" class="btn btn-block" (click)="state = 4">Finalizados</button>
         </div>
       </div>
     </div>
 
-  </section>
+    <section class="my-5" *ngIf="state == 1">
+      <p>{{ countJobsWithState(1) }} Resultados</p>
+      <div class="row my-5">
+        <ng-container *ngFor="let item of job">
+          <div class="col-md-6 col-12 my-1" *ngIf="item.state === 1">
+            <div class="d-flex border-lead cursor-pointer" [routerLink]="'/empresa/oferta-laboral/'+item.id">
+              <img src="/assets/images/work.png" class="img-fluid m-1" width="60" height="60">
+              <div class="">
+                <h3>{{ item.title }}</h3>
+                <ul class="list-style-icons d-flex mb-50 p-0">
+                  <li class="d-flex align-items-center mr-50 c-small-light"><i class="la icon-work"></i>{{ item.areas.name }}</li>
+                  <li class="d-flex align-items-center mr-50 c-small-light"><i class="la icon-location_on"></i>{{ item.location }}</li>
+                  <li class="d-flex align-items-center mr-50 c-small-light"><i class="la icon-calendar_month"></i>{{ formatFecha(item.publicationDate)}}</li>
+                </ul>
+                <ul class="list-style-icons d-flex p-0">
+                  <li class="round px-1 mr-50 job-info-category c-small-light">{{ item.typeJob.name }}</li>
+                  <li class="round px-1 mr-50 job-pendiente c-small-light">Pendiente</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </section>
+
+    <section class="my-5" *ngIf="state == 2">
+      <p>{{ countJobsWithState(2) }} Resultados</p>
+      <div class="row my-5">
+        <ng-container *ngFor="let item of job">
+          <div class="col-md-6 col-12 my-1" *ngIf="item.state === 2">
+            <div class="d-flex border-lead cursor-pointer" [routerLink]="'/empresa/oferta-laboral/'+item.id">
+              <img src="/assets/images/work.png" class="img-fluid m-1" width="60" height="60">
+              <div class="">
+                <h3>{{ item.title }}</h3>
+                <ul class="list-style-icons d-flex mb-50 p-0">
+                  <li class="d-flex align-items-center mr-50 c-small-light"><i class="la icon-work"></i>{{ item.areas.name }}</li>
+                  <li class="d-flex align-items-center mr-50 c-small-light"><i class="la icon-location_on"></i>{{ item.location }}</li>
+                  <li class="d-flex align-items-center mr-50 c-small-light"><i class="la icon-calendar_month"></i>{{ formatFecha(item.publicationDate)}}</li>
+                </ul>
+                <ul class="list-style-icons d-flex p-0">
+                  <li class="round px-1 mr-50 job-info-category c-small-light">{{ item.typeJob.name }}</li>
+                  <li class="round px-1 mr-50 job-activo c-small-light">Activo</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </section>
+
+    <section class="my-5" *ngIf="state == 3">
+      <p>{{ countJobsWithState(3) }} Resultados</p>
+      <div class="row my-5">
+        <ng-container *ngFor="let item of job">
+          <div class="col-md-6 col-12 my-1" *ngIf="item.state === 3">
+            <div class="d-flex border-lead cursor-pointer" [routerLink]="'/empresa/oferta-laboral/'+item.id">
+              <img src="/assets/images/work.png" class="img-fluid m-1" width="60" height="60">
+              <div class="">
+                <h3>{{ item.title }}</h3>
+                <ul class="list-style-icons d-flex mb-50 p-0">
+                  <li class="d-flex align-items-center mr-50 c-small-light"><i class="la icon-work"></i>{{ item.areas.name }}</li>
+                  <li class="d-flex align-items-center mr-50 c-small-light"><i class="la icon-location_on"></i>{{ item.location }}</li>
+                  <li class="d-flex align-items-center mr-50 c-small-light"><i class="la icon-calendar_month"></i>{{ formatFecha(item.publicationDate)}}</li>
+                </ul>
+                <ul class="list-style-icons d-flex p-0">
+                  <li class="round px-1 mr-50 job-info-category c-small-light">{{ item.typeJob.name }}</li>
+                  <li class="round px-1 mr-50 job-rechazado c-small-light">Rechazado</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </section>
+
+    <section class="my-5" *ngIf="state == 4">
+      <p>{{ countJobsWithState(4) }} Resultados</p>
+      <div class="row my-5">
+        <ng-container *ngFor="let item of job">
+          <div class="col-md-6 col-12 my-1" *ngIf="item.state === 4">
+            <div class="d-flex border-lead cursor-pointer" [routerLink]="'/empresa/oferta-laboral/'+item.id">
+              <img src="/assets/images/work.png" class="img-fluid m-1" width="60" height="60">
+              <div class="">
+                <h3>{{ item.title }}</h3>
+                <ul class="list-style-icons d-flex mb-50 p-0">
+                  <li class="d-flex align-items-center mr-50 c-small-light"><i class="la icon-work"></i>{{ item.areas.name }}</li>
+                  <li class="d-flex align-items-center mr-50 c-small-light"><i class="la icon-location_on"></i>{{ item.location }}</li>
+                  <li class="d-flex align-items-center mr-50 c-small-light"><i class="la icon-calendar_month"></i>{{ formatFecha(item.publicationDate)}}</li>
+                </ul>
+                <ul class="list-style-icons d-flex p-0">
+                  <li class="round px-1 mr-50 job-info-category c-small-light">{{ item.typeJob.name }}</li>
+                  <li class="round px-1 mr-50 job-rechazado c-small-light">Finalizado</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </section>
+  </div>
 </div>

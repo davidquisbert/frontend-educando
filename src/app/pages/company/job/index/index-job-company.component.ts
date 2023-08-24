@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Editor, Toolbar} from "ngx-editor";
+import {Company, Job, RespuestaApi} from "../../../../interfaces/interfaces";
+import {CompanyService} from "../../../../services/company.service";
+import { formatFecha } from 'src/app/utilities/utilities';
 
 @Component({
   selector: 'app-index-job-company',
@@ -7,51 +9,35 @@ import {Editor, Toolbar} from "ngx-editor";
   styleUrls: ['./index-job-company.component.css']
 })
 export class IndexJobCompanyComponent implements OnInit {
-  editor: Editor;
-  html = '';
-  toolbar: Toolbar = [
-    ['bold', 'italic'],
-    ['underline', 'strike'],
-    ['code', 'blockquote'],
-    ['ordered_list', 'bullet_list'],
-    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
-    ['link', 'image'],
-    ['text_color', 'background_color'],
-    ['align_left', 'align_center', 'align_right', 'align_justify'],
-  ];
+  job: Job[];
+  company: Company;
+  state = 1;
 
-  title = '';
-  description = '';
-  typeJob = '';
-  aresStudy = '';
-  city = '';
+  protected readonly formatFecha = formatFecha;
 
-  constructor() { }
+  constructor(private companyService: CompanyService) { }
 
   ngOnInit(): void {
-    this.editor = new Editor();
-
+    this.company = this.companyService.getCompanyLoggedIn();
+    this.getJob();
   }
 
-  validateForm(): boolean {
-    if (this.title.trim() === '') {
-      return false;
-    } else if (this.description.trim() === '') {
-      return false;
-    } else if (this.typeJob.trim() === '') {
-      return false;
-    } else if (this.aresStudy.trim() === '') {
-      return false;
-    } else if (this.city.trim() === '') {
-      return false;
-    }
-    return true;
+  getJob(){
+    this.companyService.getJobCompany(this.company.id)
+      .subscribe(
+        (response: RespuestaApi<any>) => {
+          if (response.code === 0) {
+            this.job = response.data;
+
+          }
+        },
+        err => {
+          console.log(err);
+        }
+      )
   }
-
-  save(): void {
-    console.log(this.description);
+  countJobsWithState(state: number): number {
+    return this.job.filter(job => job.state === state).length;
   }
-
-
 
 }

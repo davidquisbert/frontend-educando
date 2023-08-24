@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="app-content content">
-  <section class="mt-5">
+  <section class="my-5">
     <div class="container">
       <div class="d-flex justify-content-between flex-row">
         <a class="c-primaryB" style="opacity: 0">Regístrate <i class="la icon-arrow_forward"></i></a>
@@ -105,6 +105,19 @@
         <br>
         <div class="card border-8 p-3 m-0" style="background: white">
           <div class="card-content">
+            <h3>Área de estudio de interés</h3>
+            <div class="d-inline-block py-50 px-2 mr-1 round" style="background: rgba(25, 103, 210, .1)" *ngFor="let item of user.curriculumVitae.areas">
+              <label class="c-small-light mb-0 ">{{ item.name }} <button class="btn p-0 ml-50" (click)="deleteArea(item.id)"><i class="la icon-close"></i></button></label>
+            </div>
+            <div class="d-block my-1">
+              <button class="btn btn-primary btn-sm d-flex align-items-center round ml-auto" data-toggle="modal" data-target="#modalAddTraining"><i class="la icon-add mr-1"></i> Agregar área de estudio</button>
+
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="card border-8 p-3 m-0" style="background: white">
+          <div class="card-content">
             <h3>Información del candidato</h3>
             <div class="form-group">
               <label class="c-small-bold">Informacion biografica a añade una descripcion general sobre ti<span class="color-primary-c">*</span></label>
@@ -120,50 +133,408 @@
             <label class="c-small-bold my-1">Experiencia</label>
             <div class="row">
               <ng-container *ngFor="let item of user.curriculumVitae.training">
-                <div class="col-md-6 col-12" *ngIf="item.typeTraining.id == 1" style="background: ">
+                <div class="col-md-6 col-12" *ngIf="item.typeTraining.id == 1" >
                   <div class="card p-1" style="background: rgba(25, 103, 210, .1)">
                     <label class="c-small-light my-50">Empresa: <strong class="c-small-bold">{{ item.company }}</strong></label>
                     <label class="c-small-light my-50">Cargo: {{ item.appointment }}</label>
-                    <label class="c-small-light my-50">Tiempo: {{ formatFecha(item.startDate) + ' - ' + formatFecha(item.endDate) }}</label>
+                    <label class="c-small-light my-50" *ngIf="!item.current">Tiempo: {{ item.startDate + ' - ' + item.endDate }}</label>
+                    <label class="c-small-light my-50" *ngIf="item.current">Tiempo: {{ item.startDate + ' - Actual'}}</label>
                     <label class="c-small-light my-50">Pais/Ciudad: {{ 'Bolivia/' + item.city }}</label>
                     <label class="c-small-light my-50">Información: {{ item.information }}</label>
+                    <div class="text-right">
+                      <button class="btn btn-secondary btn-sm mr-1" data-toggle="modal" data-target="#modalUpdateXperience" (click)="getTrainingExperience(item.id)"> <i class="la icon-drive_file_rename_outline"></i> </button>
+                      <button class="btn btn-primary btn-sm" (click)="deleteTraining(item.id)"> <i class="la icon-delete"></i> </button>
+                    </div>
+
                   </div>
                 </div>
               </ng-container>
+            </div>
+            <div class="text-right my-2">
+              <button class="btn btn-primary btn-sm d-flex align-items-center round ml-auto" data-toggle="modal" data-target="#modalExperiencia"><i class="la icon-add mr-1"></i> Agregar</button>
             </div>
             <div class="dropdown-divider"></div>
             <label class="c-small-bold my-1">Educación</label>
             <div class="row">
               <ng-container *ngFor="let item of user.curriculumVitae.training">
-                <div class="col-md-6 col-12" *ngIf="item.typeTraining.id == 2" style="background: ">
+                <div class="col-md-6 col-12" *ngIf="item.typeTraining.id == 2">
                   <div class="card p-1" style="background: rgba(25, 103, 210, .1)">
                     <label class="c-small-light my-50">Institución: <strong class="c-small-bold">{{ item.institution }}</strong></label>
-                    <label class="c-small-light my-50">Carrera o especialidad: {{ item.appointment }}</label>
-                    <label class="c-small-light my-50">Tiempo: {{ formatFecha(item.startDate) + ' - ' + formatFecha(item.endDate) }}</label>
+                    <label class="c-small-light my-50">Carrera o especialidad: {{ item.degree }}</label>
+                    <label class="c-small-light my-50">Tiempo: {{ item.startDate + ' - ' + item.endDate }}</label>
                     <label class="c-small-light my-50">Información: {{ item.information }}</label>
+                    <div class="text-right">
+                      <button class="btn btn-secondary btn-sm mr-1" data-toggle="modal" data-target="#modalUpdateEducation" (click)="getTrainingEducacion(item.id)"> <i class="la icon-drive_file_rename_outline"></i> </button>
+                      <button class="btn btn-primary btn-sm" (click)="deleteTraining(item.id)"> <i class="la icon-delete"></i> </button>
+                    </div>
                   </div>
+
                 </div>
               </ng-container>
+            </div>
+            <div class="text-right my-2">
+              <button class="btn btn-primary btn-sm d-flex align-items-center round ml-auto" data-toggle="modal" data-target="#modalEducacion"><i class="la icon-add mr-1"></i> Agregar</button>
+
             </div>
             <div class="dropdown-divider"></div>
             <label class="c-small-bold my-1">Cursos</label>
             <div class="row">
               <ng-container *ngFor="let item of user.curriculumVitae.training">
-                <div class="col-md-6 col-12" *ngIf="item.typeTraining.id == 3" style="background: ">
+                <div class="col-md-6 col-12" *ngIf="item.typeTraining.id == 3" >
                   <div class="card p-1" style="background: rgba(25, 103, 210, .1)">
-                    <label class="c-small-light my-50">Empresa: <strong class="c-small-bold">{{ item.company }}</strong></label>
-                    <label class="c-small-light my-50">Titulo: {{ item.appointment }}</label>
-                    <label class="c-small-light my-50">Tiempo: {{ formatFecha(item.startDate) + ' - ' + formatFecha(item.endDate) }}</label>
+                    <label class="c-small-light my-50">Institución: <strong class="c-small-bold">{{ item.institution }}</strong></label>
+                    <label class="c-small-light my-50">Titulo: {{ item.degree }}</label>
+                    <label class="c-small-light my-50">Tiempo: {{ item.startDate + ' - ' + item.endDate }}</label>
                     <label class="c-small-light my-50">Información: {{ item.information }}</label>
+                    <div class="text-right">
+                      <button class="btn btn-secondary btn-sm mr-1" data-toggle="modal" data-target="#modalUpdateCourse" (click)="getTrainingCourse(item.id)"> <i class="la icon-drive_file_rename_outline"></i> </button>
+                      <button class="btn btn-primary btn-sm" (click)="deleteTraining(item.id)"> <i class="la icon-delete"></i> </button>
+                    </div>
                   </div>
+
                 </div>
               </ng-container>
+
+            </div>
+            <div class="text-right my-2">
+              <button class="btn btn-primary btn-sm d-flex align-items-center round ml-auto" data-toggle="modal" data-target="#modalCursos"><i class="la icon-add mr-1"></i> Agregar</button>
             </div>
           </div>
         </div>
-
       </div>
     </div>
-
   </section>
+</div>
+
+<!--Modal Experiencia-->
+
+<div class="modal animated pulse text-left" id="modalExperiencia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel38" aria-hidden="true">
+  <div class="modal-dialog modal-lg " role="document">
+    <div class="modal-content px-3">
+      <div class="modal-header border-0">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h2 class="text-center h2B">Elabora tu curriculum vitae</h2>
+        <h1 class="">Experiencia</h1>
+        <div class="form-group">
+          <label class="c-small-bold">Nombre de la empresa o Institución</label>
+          <input type="text" class="form-control" placeholder="Empresa" [(ngModel)]="xCompany">
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Cargo asignado</label>
+          <input type="text" class="form-control" placeholder="Contraseña" [(ngModel)]="xAppointment">
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Ciudad<span class="color-primary-c">*</span></label>
+          <div class="input-group">
+            <select class="form-control custom-select" [(ngModel)]="xCity">
+              <option value="" disabled selected>Selecciona una ciudad</option>
+              <option value="Santa Cruz">Santa Cruz</option>
+              <option value="La Paz">La Paz</option>
+              <option value="Cochabamba">Cochabamba</option>
+              <option value="Oruro">Oruro</option>
+              <option value="Potosi">Potosi</option>
+              <option value="Chuquisaca">Chuquisaca</option>
+              <option value="Tarija">Tarija</option>
+              <option value="Beni">Beni</option>
+              <option value="Pando">Pando</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Fecha de inicio<span class="color-primary-c">*</span></label>
+          <input type="month" class="form-control" placeholder="Ingresa la fecha de inicio" [(ngModel)]="xStartDate">
+        </div>
+        <div class="custom-control custom-checkbox mb-1">
+          <input type="checkbox" class="custom-control-input" id="2" name="tratamiento" [(ngModel)]="xCurrent">
+          <label class="custom-control-label description-form c-small-light" for="2">Vigente</label>
+        </div>
+        <div class="form-group" *ngIf="!xCurrent">
+          <label class="c-small-bold">Fecha de finalización<span class="color-primary-c">*</span></label>
+          <input type="month" class="form-control" placeholder="Ingresa la fecha de finalización" [(ngModel)]="xEndDate">
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Información<span class="color-primary-c">*</span></label>
+          <textarea class="form-control" [(ngModel)]="xInformation"></textarea>
+        </div>
+        <br>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="postExperiencia()">Guardar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" >Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal Educación-->
+
+<div class="modal animated pulse text-left" id="modalEducacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel38" aria-hidden="true">
+  <div class="modal-dialog modal-lg " role="document">
+    <div class="modal-content px-3">
+      <div class="modal-header border-0">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h2 class="text-center h2B">Elabora tu curriculum vitae</h2>
+        <h1 class="">Educación</h1>
+        <div class="form-group">
+          <label class="c-small-bold">Institución educativa</label>
+          <input type="text" class="form-control" placeholder="Institución" [(ngModel)]="eInstitution">
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Carrera</label>
+          <input type="text" class="form-control" placeholder="Título" [(ngModel)]="eDegree">
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Fecha de inicio<span class="color-primary-c">*</span></label>
+          <input type="month" class="form-control" placeholder="Ingresa la fecha de inicio" [(ngModel)]="eStartDate">
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Fecha de finalización<span class="color-primary-c">*</span></label>
+          <input type="month" class="form-control" placeholder="Ingresa la fecha de finalización" [(ngModel)]="eEndDate">
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Información<span class="color-primary-c">*</span></label>
+          <textarea class="form-control" [(ngModel)]="eInformation"></textarea>
+        </div>
+        <br>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="postEducation()">Guardar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" >Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal Cursos-->
+
+<div class="modal animated pulse text-left" id="modalCursos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel38" aria-hidden="true">
+  <div class="modal-dialog modal-lg " role="document">
+    <div class="modal-content px-3">
+      <div class="modal-header border-0">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h2 class="text-center h2B">Elabora tu curriculum vitae</h2>
+        <h1 class="">Experiencia</h1>
+        <div class="form-group">
+          <label class="c-small-bold">Institución</label>
+          <input type="text" class="form-control" placeholder="Ingresa la institución" [(ngModel)]="cInstitution">
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Título</label>
+          <input type="text" class="form-control" placeholder="Título" [(ngModel)]="cDegree">
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Fecha de inicio<span class="color-primary-c">*</span></label>
+          <input type="month" class="form-control" placeholder="Ingresa la fecha de inicio" [(ngModel)]="cStartDate">
+        </div>
+        <div class="form-group" *ngIf="!xCurrent">
+          <label class="c-small-bold">Fecha de finalización<span class="color-primary-c">*</span></label>
+          <input type="month" class="form-control" placeholder="Ingresa la fecha de finalización" [(ngModel)]="cEndDate">
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Información<span class="color-primary-c">*</span></label>
+          <textarea class="form-control" [(ngModel)]="cInformation"></textarea>
+        </div>
+        <br>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="postCursos()">Guardar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" >Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal animated pulse text-left" id="modalAddTraining" tabindex="-1" role="dialog" aria-labelledby="myModalLabel38" aria-hidden="true">
+  <div class="modal-dialog modal-lg " role="document">
+    <div class="modal-content px-3">
+      <div class="modal-header border-0">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h2 class="text-center h2B">Elabora tu curriculum vitae</h2>
+        <div class="form-group">
+          <label class="c-small-bold">Area de estudio<span class="color-primary-c">*</span></label>
+          <div class="input-group">
+            <select class="form-control custom-select" [(ngModel)]="areaSelection">
+              <option value="" disabled selected>Selecciona una ciudad</option>
+              <ng-container *ngFor="let item of areas">
+                <option [value]="item.id">{{ item.name }}</option>
+              </ng-container>
+            </select>
+          </div>
+        </div>
+
+        <br>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addArea(this.areaSelection)">Agregar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" >Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Modal Experiencia-->
+
+<div class="modal animated pulse text-left" id="modalUpdateXperience" tabindex="-1" role="dialog" aria-labelledby="myModalLabel38" aria-hidden="true">
+  <div class="modal-dialog modal-lg " role="document">
+    <div class="modal-content px-3">
+      <div class="modal-header border-0">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h2 class="text-center h2B">Elabora tu curriculum vitae</h2>
+        <h1 class="">Experiencia</h1>
+        <div class="form-group">
+          <label class="c-small-bold">Nombre de la empresa o Institución</label>
+          <input type="text" class="form-control" placeholder="Empresa" [(ngModel)]="xCompany">
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Cargo asignado</label>
+          <input type="text" class="form-control" placeholder="Contraseña" [(ngModel)]="xAppointment">
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Ciudad<span class="color-primary-c">*</span></label>
+          <div class="input-group">
+            <select class="form-control custom-select" [(ngModel)]="xCity">
+              <option value="" disabled selected>Selecciona una ciudad</option>
+              <option value="Santa Cruz">Santa Cruz</option>
+              <option value="La Paz">La Paz</option>
+              <option value="Cochabamba">Cochabamba</option>
+              <option value="Oruro">Oruro</option>
+              <option value="Potosi">Potosi</option>
+              <option value="Chuquisaca">Chuquisaca</option>
+              <option value="Tarija">Tarija</option>
+              <option value="Beni">Beni</option>
+              <option value="Pando">Pando</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Fecha de inicio<span class="color-primary-c">*</span></label>
+          <input type="month" class="form-control" placeholder="Ingresa la fecha de inicio" [(ngModel)]="xStartDate">
+        </div>
+        <div class="custom-control custom-checkbox mb-1">
+          <input type="checkbox" class="custom-control-input" id="6" name="tratamiento" [(ngModel)]="xCurrent">
+          <label class="custom-control-label description-form c-small-light" for="2">Vigente</label>
+        </div>
+        <div class="form-group" *ngIf="!xCurrent">
+          <label class="c-small-bold">Fecha de finalización<span class="color-primary-c">*</span></label>
+          <input type="month" class="form-control" placeholder="Ingresa la fecha de finalización" [(ngModel)]="xEndDate">
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Información<span class="color-primary-c">*</span></label>
+          <textarea class="form-control" [(ngModel)]="xInformation"></textarea>
+        </div>
+        <br>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="putTrainingExperience()">Actualizar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" >Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal Educación-->
+
+<div class="modal animated pulse text-left" id="modalUpdateEducation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel38" aria-hidden="true">
+  <div class="modal-dialog modal-lg " role="document">
+    <div class="modal-content px-3">
+      <div class="modal-header border-0">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h2 class="text-center h2B">Elabora tu curriculum vitae</h2>
+        <h1 class="">Educación</h1>
+        <div class="form-group">
+          <label class="c-small-bold">Institución educativa</label>
+          <input type="text" class="form-control" placeholder="Institución" [(ngModel)]="eInstitution">
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Carrera</label>
+          <input type="text" class="form-control" placeholder="Título" [(ngModel)]="eDegree">
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Fecha de inicio<span class="color-primary-c">*</span></label>
+          <input type="month" class="form-control" placeholder="Ingresa la fecha de inicio" [(ngModel)]="eStartDate">
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Fecha de finalización<span class="color-primary-c">*</span></label>
+          <input type="month" class="form-control" placeholder="Ingresa la fecha de finalización" [(ngModel)]="eEndDate">
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Información<span class="color-primary-c">*</span></label>
+          <textarea class="form-control" [(ngModel)]="eInformation"></textarea>
+        </div>
+        <br>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="putTrainingEducacion()">Actualizar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" >Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal Cursos-->
+
+<div class="modal animated pulse text-left" id="modalUpdateCourse" tabindex="-1" role="dialog" aria-labelledby="myModalLabel38" aria-hidden="true">
+  <div class="modal-dialog modal-lg " role="document">
+    <div class="modal-content px-3">
+      <div class="modal-header border-0">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h2 class="text-center h2B">Elabora tu curriculum vitae</h2>
+        <h1 class="">Experiencia</h1>
+        <div class="form-group">
+          <label class="c-small-bold">Institución</label>
+          <input type="text" class="form-control" placeholder="Ingresa la institución" [(ngModel)]="cInstitution">
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Título</label>
+          <input type="text" class="form-control" placeholder="Título" [(ngModel)]="cDegree">
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Fecha de inicio<span class="color-primary-c">*</span></label>
+          <input type="month" class="form-control" placeholder="Ingresa la fecha de inicio" [(ngModel)]="cStartDate">
+        </div>
+        <div class="form-group" *ngIf="!xCurrent">
+          <label class="c-small-bold">Fecha de finalización<span class="color-primary-c">*</span></label>
+          <input type="month" class="form-control" placeholder="Ingresa la fecha de finalización" [(ngModel)]="cEndDate">
+        </div>
+        <div class="form-group">
+          <label class="c-small-bold">Información<span class="color-primary-c">*</span></label>
+          <textarea class="form-control" [(ngModel)]="cInformation"></textarea>
+        </div>
+        <br>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="putTrainingCourse()">Actualizar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" >Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

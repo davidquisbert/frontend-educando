@@ -1,4 +1,4 @@
-<app-header-company></app-header-company>
+<app-header-administrator></app-header-administrator>
 <section>
   <div class="app-content content">
     <div class="header">
@@ -19,11 +19,11 @@
                 <li class="round px-1 mr-50 job-pendiente c-small-light" *ngIf="job.state == 1">Pendiente</li>
                 <li class="round px-1 mr-50 job-activo c-small-light" *ngIf="job.state == 2">Activo</li>
                 <li class="round px-1 mr-50 job-rechazado c-small-light" *ngIf="job.state == 3">Rechazado</li>
-                <li class="round px-1 mr-50 job-finalizado c-small-light" *ngIf="job.state == 4">Finalizado</li>
               </ul>
             </div>
           </div>
-          <button class="btn btn-secondary btn-lg round px-3" data-toggle="modal" data-target="#primary" *ngIf="job.state == 2" (click)="updateStateJob(4)">Finalizar oferta</button>
+          <button class="btn btn-primary btn-lg round px-3" data-toggle="modal" data-target="#primary" *ngIf="job.state == 1" (click)="updateStateJob(2)">Aceptar</button>
+          <button class="btn btn-secondary btn-lg round px-3" data-toggle="modal" data-target="#primary" *ngIf="job.state == 1" (click)="updateStateJob(3)">Rechazar</button>
         </div>
       </div>
     </div>
@@ -36,8 +36,7 @@
       <div class=" col-md-8 col-12 text-center">
         <h3>{{ job?.title }}</h3>
         <div class="c-small-bold my-2">Base: {{ job?.location }}</div>
-        <div class="text-left">{{ job?.description }}</div>
-
+        <div class="text-left" [innerHTML]="job?.description"></div>
 
       </div>
       <div class="col-md-4 col-12">
@@ -50,6 +49,7 @@
               <label class="d-block c-small-light m-0">{{ formatFecha(job.publicationDate) }}</label>
             </div>
           </div>
+
           <div class="d-flex align-items-center my-3">
             <i class="lam icon-location_on"></i>
             <div class="ml-1">
@@ -57,6 +57,7 @@
               <label class="d-block c-small-light m-0">{{ job?.location }}</label>
             </div>
           </div>
+
           <div class="d-flex align-items-center my-3">
             <i class="lam icon-payments"></i>
             <div class="ml-1">
@@ -64,38 +65,34 @@
               <label class="d-block c-small-light m-0">Acuerdo salarial</label>
             </div>
           </div>
+
+
+        </div>
+        <br>
+        <div class="p-2 b-blue">
+          <div class="d-flex">
+            <img src="/assets/images/work.png" class="mr-1" width="60" height="60">
+            <div class="">
+              <h3>{{ job?.company?.name }}</h3>
+              <a [href]="'/empresas/'+job?.company?.id">Ver perfil de empresa</a>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between my-2">
+            <label class="c-small-bold">Industria primaria:</label>
+            <label class="c-small-light">{{ job?.company?.area?.name }}</label>
+          </div>
+          <div class="d-flex justify-content-between my-2">
+            <label class="c-small-bold">Teléfono:</label>
+            <label class="c-small-light">{{ job?.company?.numberPhone }}</label>
+          </div>
+          <div class="d-flex flex-column my-2">
+            <label class="c-small-bold">Correo electrónico:</label>
+            <label class="c-small-light">{{ job?.company?.email }}</label>
+          </div>
+          <button class="btn btn-primary btn-block">{{ job?.company?.webSite }}</button>
         </div>
       </div>
     </div>
-
-        <div class="text-center" *ngIf="job.state == 2 || job.state == 4">
-          <h2 class="my-5">Postulantes</h2>
-          <label class="c-bold-black d-block my-5" *ngIf="job.postulants.length == 0">Aun no hay postulantes</label>
-
-          <div class="row my-5">
-            <div class="col-lg-4 col-md-6 col-12" *ngFor="let item of job?.postulants">
-              <div class="card pull-up product">
-                <div class="card-content">
-                  <div class="card-body">
-                    <a href="ecommerce-product-detail.html">
-                      <div class="product-img d-flex align-items-center justify-content-center">
-                        <img class="img-fluid mb-75 rounded-circle" src="/assets/images/avatar-s-25.png" alt="Card image cap">
-                      </div>
-                      <div class="price-reviews">
-                        <h3 class="product-title text-uppercase">{{ item.name + ' ' + item.lastName }}</h3>
-                        <label class="c-bold-black d-block">{{ item.nacionality }}</label>
-                        <label class="c-light-black d-block">{{ item.numberPhone }}</label>
-                      </div>
-
-                      <div class="dropdown-divider"></div>
-                      <button class="btn btn-primary btn-block">Ver perfil</button>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  </div>
 </section>
 <app-footer></app-footer>

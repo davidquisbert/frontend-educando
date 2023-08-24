@@ -68,12 +68,15 @@ export interface Postulants {
   birthdate: string;
   student: boolean;
   curriculumVitae: CurriculumVitae;
+  postulations: Job[];
+
 }
 
 export interface CurriculumVitae {
   id: number;
   description: string;
   training: Training[];
+  areas: Type[];
 }
 
 export interface Training {

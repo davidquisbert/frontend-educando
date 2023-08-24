@@ -37,6 +37,7 @@ import { HeaderCompanyComponent } from './components/header-company/header-compa
 import { PublishJobCompanyComponent } from './pages/company/job/publish/publish-job-company.component';
 import { HeaderAdministratorComponent } from './components/header-administrator/header-administrator.component';
 import {environment} from "../environment/enviroments";
+import { DetailJobAdministratorComponent } from './pages/administrator/job/detail-job-administrator/detail-job-administrator.component';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import {environment} from "../environment/enviroments";
     HeaderCompanyComponent,
     PublishJobCompanyComponent,
     HeaderAdministratorComponent,
+    DetailJobAdministratorComponent,
   ],
   imports: [
     HttpClientModule,

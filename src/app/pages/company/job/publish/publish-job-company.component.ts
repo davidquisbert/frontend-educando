@@ -76,7 +76,7 @@ export class PublishJobCompanyComponent {
         (response: RespuestaApi<any>) => {
           if (response.code === 0) {
             this.areas = response.data;
-            window.location.href = '/'
+            window.location.href = '/empresa/oferta-laboral'
           }
         },
         err => {

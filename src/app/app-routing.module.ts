@@ -28,6 +28,9 @@ import { DetailJobCompanyComponent } from './pages/company/job/detail/detail-job
 import { IndesPostulantCompanyComponent } from './pages/company/postunt/indes/indes-postulant-company.component';
 import {IndexRegisterCompanyComponent} from "./pages/company/register/index/index-register-company.component";
 import {PublishJobCompanyComponent} from "./pages/company/job/publish/publish-job-company.component";
+import {
+  DetailJobAdministratorComponent
+} from "./pages/administrator/job/detail-job-administrator/detail-job-administrator.component";
 
 const routes: Routes = [
   // Postulant
@@ -41,7 +44,8 @@ const routes: Routes = [
   // Administrator
   { path: 'administrador', component: IndexHomeAdministratorComponent},
   { path: 'administrador/login', component: IndexLoginAdministratorComponent},
-  { path: 'administrador/trabajo/:id ', component: IndexJobAdministratorComponent},
+  { path: 'administrador/trabajo', component: IndexJobAdministratorComponent},
+  { path: 'administrador/trabajo/:id', component: DetailJobAdministratorComponent},
   // Company
   { path: 'empresa', component: IndexHomeCompanyComponent},
   { path: 'empresa/registro', component: IndexRegisterCompanyComponent},

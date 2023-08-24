@@ -1,10 +1,9 @@
 <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light bg-info navbar-shadow">
   <div class="navbar-wrapper">
-    <div class="navbar-header">
-      <ul class="nav navbar-nav flex-row">
-        <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
-        <li class="nav-item"><a class="navbar-brand" href="index.html"><img class="img-fluid" alt="logo" src="/assets/images/logo-oficial.png" width="192">
-          <h3 class="brand-text"></h3>
+    <div class="navbar-header" routerLink="/administrador" style="z-index: 100">
+      <ul class="nav navbar-nav flex-row" >
+        <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="/administrador"><i class="ft-menu font-large-1"></i></a></li>
+        <li class="nav-item"><a class="navbar-brand" ><img class="img-fluid" alt="logo" src="/assets/images/logo-oficial.png" width="192">
         </a></li>
         <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="la la-ellipsis-v"></i></a></li>
       </ul>
@@ -13,9 +12,7 @@
       <div class="collapse navbar-collapse" id="navbar-mobile">
         <ul class="nav navbar-nav mr-auto float-left">
           <li class="nav-item dropdown">
-            <a class="nav-link" routerLink="/empresa/oferta-laboral">Revision ofertas laborales</a>
-          </li>
-          <li class="nav-item dropdown">
+            <a class="nav-link" routerLink="/administrador/trabajo">Revision ofertas laborales</a>
           </li>
 
         </ul>

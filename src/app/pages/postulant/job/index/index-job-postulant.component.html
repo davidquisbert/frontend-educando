@@ -11,22 +11,25 @@
     <section class="my-5" *ngIf="sesionPostulant != null">
       <p>{{job.length}} Resultados</p>
       <div class="row my-5">
-        <div class="col-md-6 col-12 my-1" *ngFor="let item of job">
-          <div class="d-flex border-lead cursor-pointer" [routerLink]="'/trabajo/'+item.id">
-            <img src="/assets/images/work.png" class="img-fluid m-1" width="60" height="60">
-            <div class="">
-              <h3>{{ item.title }}</h3>
-              <ul class="list-style-icons d-flex mb-50 p-0">
-                <li class="d-flex align-items-center mr-50 c-small-light"><i class="la icon-work"></i>{{ item.areas.name }}</li>
-                <li class="d-flex align-items-center mr-50 c-small-light"><i class="la icon-location_on"></i>{{ item.location }}</li>
-                <li class="d-flex align-items-center mr-50 c-small-light"><i class="la icon-calendar_month"></i>{{ formatFecha(item.publicationDate)}}</li>
-              </ul>
-              <ul class="list-style-icons d-flex p-0">
-                <li class="round px-1 mr-50 job-info-category c-small-light">{{ item.typeJob.name }}</li>
-              </ul>
+        <ng-container  *ngFor="let item of job">
+          <div class="col-md-6 col-12 my-1">
+            <div class="d-flex border-lead cursor-pointer" [routerLink]="'/trabajo/'+item.id">
+              <img src="/assets/images/work.png" class="img-fluid m-1" width="60" height="60">
+              <div class="">
+                <h3>{{ item.title }}</h3>
+                <ul class="list-style-icons d-flex mb-50 p-0">
+                  <li class="d-flex align-items-center mr-50 c-small-light"><i class="la icon-work"></i>{{ item.areas.name }}</li>
+                  <li class="d-flex align-items-center mr-50 c-small-light"><i class="la icon-location_on"></i>{{ item.location }}</li>
+                  <li class="d-flex align-items-center mr-50 c-small-light"><i class="la icon-calendar_month"></i>{{ formatFecha(item.publicationDate)}}</li>
+                </ul>
+                <ul class="list-style-icons d-flex p-0">
+                  <li class="round px-1 mr-50 job-info-category c-small-light">{{ item.typeJob.name }}</li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
+
+        </ng-container>
       </div>
     </section>
 

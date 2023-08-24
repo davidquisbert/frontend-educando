@@ -13,6 +13,16 @@ export class AdministratorService {
 
   constructor(private http: HttpClient) {}
 
+  getJob(): Observable<object> {
+    const url = `${environment.urlApi}/job`;
+    return this.http.get(url, {headers});
+  }
+
+  putJob(idJob: number, state: number): Observable<object> {
+    const url = `${environment.urlApi}/job/state/jobOffer=${idJob}&state=${state}`;
+    return this.http.get(url, {headers});
+  }
+
   postLogin(email: string, password: string): Observable<object> {
     const url = `${environment.urlApi}/user/administrator/login`;
     const params = {
